@@ -1,0 +1,49 @@
+.toggle-label {
+  position: relative;
+  display: inline-block;
+  height: 40px;
+  width: 80px;
+  cursor: pointer;
+  border-radius: 20px;
+  background-color: var(--toggle-button-color);
+  user-select: none;
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-button {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  left: 5px;
+  top: 4px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 1);
+  transition: transform 0.4s ease, background-color 0.4s ease;
+}
+
+.toggle-input:checked + .toggle-button {
+  transform: translateX(40px);
+  background-color: rgba(219, 219, 219, 1);
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sun {
+  color: orange;
+}
+
+.horizontal-line {
+  background: linear-gradient(to right, var(--border-shadow-color));
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  opacity: 0.3;
+  height: 1px;
+  margin: 20px -20px;
+}

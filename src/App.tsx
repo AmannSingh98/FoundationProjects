@@ -1,8 +1,12 @@
+import ThemeToggle from './components/ThemeToggle/ThemeToggle'
+import Resume from './features/resume/Resume'
+
 function App() {
   return (
-    <>
-      <h1>Resume Show Components</h1>
-    </>
+    <div className="main">
+      <ThemeToggle />
+      <Resume />
+    </div>
   )
 }
 
