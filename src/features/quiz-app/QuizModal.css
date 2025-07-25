@@ -1,0 +1,11 @@
+.quiz-modal {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  left: 50px;
+  bottom: 50px;
+  transform: translate(0, 0);
+  background-color: antiquewhite;
+  opacity: 0.8;
+  border-radius: 5px;
+}
