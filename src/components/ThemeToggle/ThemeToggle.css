@@ -5,28 +5,40 @@
   width: 80px;
   cursor: pointer;
   border-radius: 20px;
-  background-color: var(--toggle-button-color);
+  background-color: #dfe7fd;
   user-select: none;
 }
 
+.toggle-label:focus {
+  outline: #f8961e;
+}
+
 .toggle-input {
-  display: none;
+  /* display: none; */
+  opacity: 0;
+  width: 1px;
+  height: 1px;
 }
 
 .toggle-button {
   position: absolute;
   height: 30px;
   width: 30px;
-  left: 5px;
-  top: 4px;
+  left: 6px;
+  top: 5px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: #ffffff;
   transition: transform 0.4s ease, background-color 0.4s ease;
+  padding: 2px 2px;
+}
+
+.toggle-input:focus + .toggle-button {
+  box-shadow: 0 0 0 5px #9bb1ff;
 }
 
 .toggle-input:checked + .toggle-button {
-  transform: translateX(40px);
-  background-color: rgba(219, 219, 219, 1);
+  transform: translateX(38px);
+  background-color: #ffffff;
 }
 
 .icon {
@@ -34,10 +46,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 25px;
+  height: 25px;
 }
 
 .sun {
-  color: orange;
+  color: #353535;
+}
+
+.moon {
+  color: #353535;
 }
 
 .horizontal-line {

@@ -13,6 +13,7 @@ const ThemeToggle = () => {
           className="toggle-input"
           checked={isChecked}
           onChange={handleChange}
+          aria-label="Toggle button for dark mode"
         />
         <span className="toggle-button">
           {isChecked ? (

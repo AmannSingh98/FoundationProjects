@@ -4,7 +4,6 @@ const useDarkMode = () => {
   const [isDarkMode, setIsDarkMode] = useState(false)
 
   const handleTheme = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.checked)
     setIsDarkMode(e.target.checked)
   }
 
