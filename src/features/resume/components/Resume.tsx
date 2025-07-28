@@ -1,13 +1,15 @@
 import { useState } from 'react'
-import ProfileMain from '../../assets/images/ProfileMain.svg'
+import ProfileMain from 'assets/images/ProfileMain.svg'
 import './Resume.css'
-import QuizModal from '../quiz-app/QuizModal'
-const Resume = () => {
-  const [modal, setModal] = useState(false)
+import QuizApp from 'features/quiz-app/components/QuizApp'
+import QuizStart from 'features/quiz-app/components/QuizStart'
 
-  // const handleClick = (): void => {
-  //   console.log('button clicked')
-  // }
+const Resume = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleModal = () => {
+    setIsModalOpen(false)
+  }
 
   return (
     <>
@@ -18,12 +20,12 @@ const Resume = () => {
         <div className="profile-into">
           <h1>Hi, I am Aman Singh</h1>
           <p>Frontend Developer</p>
-          <button className="quiz-button" onClick={() => setModal(true)}>
+          <button className="quiz-button" onClick={() => setIsModalOpen(true)}>
             Test Me
           </button>
         </div>
       </section>
-      {modal && <QuizModal handleModal={setModal} />}
+      {isModalOpen && <QuizStart closeModal={handleModal} />}
     </>
   )
 }

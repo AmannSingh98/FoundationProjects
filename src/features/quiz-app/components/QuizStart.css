@@ -27,6 +27,10 @@
   z-index: 1000;
 }
 
+.question {
+  width: 600px;
+}
+
 .intro-text {
   text-align: center;
   margin-bottom: 15px;
@@ -60,8 +64,58 @@ input:focus {
   margin-top: 10px;
 }
 
+.hide {
+  display: none;
+}
+.quiz-main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  max-width: 600px;
+  flex-grow: 1;
+  margin-top: 20px;
+}
+
+.quiz-solution-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.correct {
+  background-color: green;
+}
+
+.wrong {
+  background-color: red;
+}
+
+/* Shows outline only for keyboard focus, not mouse click or hover. */
+.answer-button:focus:not(:focus-visible) {
+  outline: none;
+}
+.answer-button:focus-visible {
+  outline: 2px solid orange;
+}
+.answer-button:hover {
+  background: orange;
+}
+
+@media (max-width: 700px) {
+  .quiz-solution-container {
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    gap: 20px;
+  }
+}
+
+.show {
+}
+
 @media (max-width: 700px) {
   .quiz-modal {
-    width: 350px;
+    width: auto;
   }
 }

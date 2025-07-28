@@ -1,0 +1,39 @@
+.quiz-main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  max-width: 600px;
+  flex-grow: 1;
+  margin-top: 20px;
+}
+
+.quiz-solution-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+li {
+  list-style: none;
+  text-align: center;
+}
+
+/* Shows outline only for keyboard focus, not mouse click or hover. */
+.answer-button:focus:not(:focus-visible) {
+  outline: none;
+}
+.answer-button:focus-visible {
+  outline: 2px solid orange; /* Or whatever your design uses */
+}
+.answer-button:hover {
+  background: orange; /* Example hover style */
+}
+
+@media (max-width: 700px) {
+  .quiz-solution-container {
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+  }
+}

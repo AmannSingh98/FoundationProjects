@@ -38,7 +38,7 @@ export const data = [
     answer: 'rishabh'
   },
   {
-    id: 1,
+    id: 3,
     question: 'what is my favourite cartoon',
     answers: [
       {

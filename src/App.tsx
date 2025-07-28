@@ -1,5 +1,5 @@
-import ThemeToggle from './components/ThemeToggle/ThemeToggle'
-import Resume from './features/resume/Resume'
+import ThemeToggle from 'components/ThemeToggle/ThemeToggle'
+import Resume from 'features/resume/components/Resume'
 
 function App() {
   return (
