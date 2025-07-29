@@ -13,9 +13,9 @@ const ThemeToggle = () => {
           className="toggle-input"
           checked={isChecked}
           onChange={handleChange}
-          aria-label="Toggle button for dark mode"
+          aria-label="Toggle dark mode"
         />
-        <span className="toggle-button">
+        <span className="toggle-button" aria-hidden={true}>
           {isChecked ? (
             <FontAwesomeIcon icon={faMoon} className="moon icon" />
           ) : (

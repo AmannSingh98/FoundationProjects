@@ -1,12 +1,10 @@
-import ThemeToggle from 'components/ThemeToggle/ThemeToggle'
-import Resume from 'features/resume/components/Resume'
+import Home from 'pages/Home/Home'
 
 function App() {
   return (
-    <div className="main">
-      <ThemeToggle />
-      <Resume />
-    </div>
+    <main className="main">
+      <Home />
+    </main>
   )
 }
 

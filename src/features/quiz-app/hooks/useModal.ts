@@ -15,7 +15,6 @@ const useModal = () => {
       setSelectedAnswer('')
       return
     }
-    console.log(counter)
     setShowResult(true)
   }
 

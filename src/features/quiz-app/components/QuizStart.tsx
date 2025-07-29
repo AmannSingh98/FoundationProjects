@@ -36,7 +36,7 @@ const QuizStart = ({ closeModal }) => {
     <>
       <div className="modal-overlay"></div>
       {isQuizModal ? (
-        <QuizMain close={handleCancel} />
+        <QuizMain close={handleCancel} time={time} />
       ) : (
         <section className="quiz-modal">
           <h2 className="intro-text">Welcome to the Quiz</h2>

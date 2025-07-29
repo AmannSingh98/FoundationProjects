@@ -32,6 +32,8 @@
 
 .main {
   padding: 40px;
+  margin: 0 auto;
+  max-width: 1600px;
 }
 
 button {

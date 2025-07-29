@@ -1,59 +1,25 @@
 export const data = [
   {
     id: 1,
-    question: 'what is my favourite sports',
-    answers: [
-      {
-        solution: 'basketball'
-      },
-      {
-        solution: 'Football'
-      },
-      {
-        solution: 'Cricket'
-      },
-      {
-        solution: 'Swimming'
-      }
-    ],
-    answer: 'basketball'
+    question: 'console.log(typeof null);',
+    answers: ['null', 'undefined', 'object', 'boolean'],
+    answer: 'object'
   },
   {
     id: 2,
-    question: 'what is my Home name',
-    answers: [
-      {
-        solution: 'Sailab'
-      },
-      {
-        solution: 'Rishabh'
-      },
-      {
-        solution: 'Singh saab'
-      },
-      {
-        solution: 'Rooo'
-      }
-    ],
-    answer: 'rishabh'
+    question: `for (var i = 0; i < 3; i++){setTimeout(()=>console.log(i), 1000);}`,
+    answers: ['0 1 2', '3 3 3', 'undefined undefined undefined', 'Error'],
+    answer: '3 3 3'
   },
   {
     id: 3,
-    question: 'what is my favourite cartoon',
+    question: 'What is a closure in JavaScript?',
     answers: [
-      {
-        solution: 'doraemon'
-      },
-      {
-        solution: 'shin chan'
-      },
-      {
-        solution: 'family man'
-      },
-      {
-        solution: 'Swimming'
-      }
+      'A way to declare variables globally',
+      'A syntax to immediately execute a function',
+      'A special kind of loop',
+      'A function combined with references to its surrounding state'
     ],
-    answer: 'doraemon'
+    answer: 'A function combined with references to its surrounding state'
   }
 ]

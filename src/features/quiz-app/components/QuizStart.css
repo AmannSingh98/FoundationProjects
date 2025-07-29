@@ -104,6 +104,24 @@ input:focus {
   background: orange;
 }
 
+.quiz-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* .quiz-timer h2 {
+  margin: 0;
+} */
+
+.quiz-header .timer {
+  font-size: 20px;
+  font-weight: 700;
+  position: absolute;
+  right: 0;
+}
+
 @media (max-width: 700px) {
   .quiz-solution-container {
     grid-template-columns: repeat(2, minmax(150px, 1fr));
