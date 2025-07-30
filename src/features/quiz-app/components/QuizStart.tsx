@@ -2,28 +2,28 @@ import { useEffect, useRef, useState } from 'react'
 import './QuizStart.css'
 import QuizMain from './QuizMain'
 
-const QuizStart = ({ closeModal }) => {
+interface quizStartProp {
+  closeModal: () => void
+}
+const QuizStart = ({ closeModal }: quizStartProp) => {
   const [time, setTime] = useState('')
   const [isQuizModal, setIsQuizModal] = useState(false)
-  const inputRef = useRef(null)
+  const inputRef = useRef<HTMLInputElement | null>(null)
 
-  const handleChange = e => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const regex = /^\d*$/
-    if (regex.test(time)) {
+    if (regex.test(e.target.value)) {
       setTime(e.target.value)
     }
   }
 
   const handleStart = () => {
-    if (!time || isNaN(time) || Number(time) <= 0 || Number(time) > 60) {
+    const numeric = Number(time)
+    if (!time || isNaN(numeric) || numeric <= 0 || numeric > 60) {
       alert('Please enter the valid time(in seconds)')
       return
     }
     setIsQuizModal(true)
-  }
-
-  const handleCancel = () => {
-    closeModal()
   }
 
   useEffect(() => {
@@ -34,27 +34,35 @@ const QuizStart = ({ closeModal }) => {
 
   return (
     <>
-      <div className="modal-overlay"></div>
+      <div className="modal-overlay" aria-hidden="true"></div>
       {isQuizModal ? (
-        <QuizMain close={handleCancel} time={time} />
+        <QuizMain closeModal={closeModal} time={time} />
       ) : (
         <section className="quiz-modal">
-          <h2 className="intro-text">Welcome to the Quiz</h2>
-          <label>
-            <input
-              type="number"
-              value={time}
-              ref={inputRef}
-              onChange={handleChange}
-              required
-              placeholder="Time/Question (<= 60 Sec)"
-            />
+          <h2 className="intro-text" id="quiz-modal">
+            Welcome to the Quiz
+          </h2>
+          <label htmlFor="time-input">
+            Enter time limit (in seconds, max 60)
           </label>
-          <nav className="quiz-button-container">
+          <input
+            id="time-input"
+            type="number"
+            value={time}
+            ref={inputRef}
+            onChange={handleChange}
+            required
+            placeholder="Ex-21"
+          />
+
+          <nav
+            className="quiz-button-container"
+            aria-label="Quiz start and cancel section"
+          >
             <button className="start-button" onClick={handleStart}>
               Start
             </button>
-            <button className="cancel-button" onClick={handleCancel}>
+            <button className="cancel-button" onClick={closeModal}>
               Close
             </button>
           </nav>

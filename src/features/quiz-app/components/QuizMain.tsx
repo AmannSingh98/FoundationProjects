@@ -2,9 +2,15 @@ import './QuizStart.css'
 import useModal from '../hooks/useModal'
 import { useEffect, useRef, useState } from 'react'
 
-const QuizMain = ({ close, time }) => {
-  const [timer, setTimer] = useState(time)
-  const timerRef = useRef(null)
+interface quizMainProps {
+  closeModal: () => void
+  time: string
+}
+
+const QuizMain = ({ closeModal, time }: quizMainProps) => {
+  const numericTime = Number(time)
+  const [timer, setTimer] = useState<number>(numericTime)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const scoreRef = useRef(0)
 
   const {
@@ -17,37 +23,38 @@ const QuizMain = ({ close, time }) => {
     showResult
   } = useModal()
 
-  const handleCancel = () => {
-    close()
-  }
-
   const handleNext = () => {
-    console.log(selectedAnswer)
     if (selectedAnswer === quizData[counter].answer) {
       scoreRef.current = scoreRef.current + 1
     }
-    console.log(scoreRef.current)
-
     if (timerRef.current) {
       clearInterval(timerRef.current)
       timerRef.current = null
     }
-    setTimer(time)
+    setTimer(numericTime)
     handleCounter()
   }
 
-  useEffect(() => {
-    timerRef.current = setInterval(() => {
+  const handleInterval = () => {
+    return setInterval(() => {
       setTimer(prev => {
         if (prev > 0) {
           return prev - 1
-        } else {
-          handleNext()
         }
+        handleNext()
+        return numericTime
       })
     }, 1000)
+  }
 
-    return () => clearInterval(timerRef.current)
+  useEffect(() => {
+    timerRef.current = handleInterval()
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current)
+      }
+    }
   }, [counter])
 
   if (showResult) {
@@ -59,7 +66,7 @@ const QuizMain = ({ close, time }) => {
           Total Score - {scoreRef.current}
         </h3>
         <button
-          onClick={handleCancel}
+          onClick={closeModal}
           style={{ width: 'fit-content', margin: 'auto' }}
         >
           Close
@@ -107,10 +114,11 @@ const QuizMain = ({ close, time }) => {
           onClick={handleNext}
           className={`next-button ${nextButtonShow ? 'show' : 'hide'}`}
         >
-          {'<'} {counter === quizData.length - 1 ? 'Submit' : 'Next'}
+          {'<'}
+          {counter === quizData.length - 1 ? 'Submit' : 'Next'}
           {'>'}
         </button>
-        <button onClick={handleCancel}>
+        <button onClick={closeModal}>
           {'<'}End{'>'}
         </button>
       </nav>

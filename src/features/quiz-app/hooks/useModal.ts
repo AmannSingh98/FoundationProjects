@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import { data } from '../data/data'
+import { data as quizData } from '../data/data'
 
 const useModal = () => {
-  const [quizData, setQuizData] = useState(data)
   const [counter, setCounter] = useState(0)
   const [nextButtonShow, setNextButtonShow] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState('')
@@ -18,7 +17,7 @@ const useModal = () => {
     setShowResult(true)
   }
 
-  const handleSolution = answer => {
+  const handleSolution = (answer: string) => {
     setNextButtonShow(true)
     setSelectedAnswer(answer)
   }
