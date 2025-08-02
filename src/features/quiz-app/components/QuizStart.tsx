@@ -11,6 +11,7 @@ const QuizStart = ({ closeModal }: quizStartProp) => {
   const inputRef = useRef<HTMLInputElement | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e)
     const regex = /^\d*$/
     if (regex.test(e.target.value)) {
       setTime(e.target.value)
@@ -26,10 +27,19 @@ const QuizStart = ({ closeModal }: quizStartProp) => {
     setIsQuizModal(true)
   }
 
+  const handleEscClose = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      document.removeEventListener('keydown', handleEscClose)
+      closeModal()
+    }
+  }
+
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus()
     }
+
+    document.addEventListener('keydown', handleEscClose)
   }, [])
 
   return (

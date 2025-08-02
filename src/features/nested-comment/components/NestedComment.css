@@ -1,0 +1,31 @@
+.comment-section-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 40px;
+}
+
+.comment-textarea {
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.post-button {
+  white-space: noWrap;
+  margin-left: 10px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.post-comment-section {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+/* .reply-comment-section-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+} */

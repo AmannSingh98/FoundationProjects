@@ -19,7 +19,7 @@ const Resume = () => {
 
   return (
     <>
-      <section className="secondary-container">
+      <section className="secondary-container" aria-hidden={isModalOpen}>
         <figure className="profile-icon">
           <img src={ProfileMain} alt="" />
         </figure>

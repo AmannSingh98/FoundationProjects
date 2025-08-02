@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
+import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons'
 import useDarkMode from 'hooks/useDarkMode'
 import './ThemeToggle.css'
 

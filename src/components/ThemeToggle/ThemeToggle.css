@@ -1,11 +1,11 @@
 .toggle-label {
   position: relative;
   display: inline-block;
-  height: 40px;
-  width: 80px;
+  height: 32px;
+  width: 60px;
   cursor: pointer;
   border-radius: 20px;
-  background-color: #dfe7fd;
+  background-color: #e9ecee;
   user-select: none;
 }
 
@@ -21,23 +21,22 @@
 
 .toggle-button {
   position: absolute;
-  height: 30px;
-  width: 30px;
-  left: 6px;
-  top: 5px;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  top: 3px;
   border-radius: 50%;
-  background-color: #ffffff;
+  background-color: var(--bg);
   transition: transform 0.4s ease, background-color 0.4s ease;
-  padding: 2px 2px;
+  padding: 10px;
 }
 
 .toggle-input:focus + .toggle-button {
-  box-shadow: 0 0 0 5px #9bb1ff;
+  border: 0.1px solid rgb(201, 164, 164);
 }
 
 .toggle-input:checked + .toggle-button {
-  transform: translateX(38px);
-  background-color: #ffffff;
+  transform: translateX(27px);
 }
 
 .icon {
@@ -45,16 +44,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 25px;
-  height: 25px;
+  width: 16px;
+  height: 16px;
 }
 
-.sun {
-  color: #353535;
-}
-
+.sun,
 .moon {
-  color: #353535;
+  color: var(--text-color);
 }
 
 .horizontal-line {

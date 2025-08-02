@@ -1,0 +1,12 @@
+.reply-section {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.comment-button-container {
+  margin-top: 10px;
+}
