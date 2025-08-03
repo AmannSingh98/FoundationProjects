@@ -1,7 +1,6 @@
 .comment-section-container {
   display: flex;
   flex-direction: column;
-  position: fixed;
   bottom: 0;
   margin-bottom: 40px;
 }
@@ -21,7 +20,7 @@
 
 .post-comment-section {
   display: flex;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 /* .reply-comment-section-container {

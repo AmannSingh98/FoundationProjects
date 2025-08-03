@@ -1,6 +1,13 @@
 import { useState } from 'react'
-import './Comment.css'
-const Comment = ({ comment, handleReply }) => {
+import './SingleComment.css'
+import type { Comment as CommentType } from '../hooks/useCommentTree'
+
+interface singleCommentProps {
+  comment: CommentType
+  handleReply: (id: number | null, content: string) => void
+}
+
+const Comment = ({ comment, handleReply }: singleCommentProps) => {
   const { id, content, timestamp } = comment
   const [isExpand, setIsExpand] = useState(false)
   const [replyContent, setReplyContent] = useState('')
@@ -13,7 +20,7 @@ const Comment = ({ comment, handleReply }) => {
     setReplyContent(e.target.value)
   }
 
-  const handleCommentReply = id => {
+  const handleCommentReply = () => {
     handleReply(id, replyContent)
     setReplyContent('')
   }
@@ -21,7 +28,7 @@ const Comment = ({ comment, handleReply }) => {
   return (
     <section className="reply-section">
       <p>{content} </p>
-      <span>{timestamp}</span>
+      <span>{new Date(timestamp).toLocaleString()}</span>
       <div className="comment-button-container">
         <button onClick={handleExpand}>{isExpand ? 'Hide' : 'Reply'}</button>
         <button>Edit</button>
@@ -41,7 +48,7 @@ const Comment = ({ comment, handleReply }) => {
             <button
               className="post-button"
               type="button"
-              onClick={() => handleCommentReply(id)}
+              onClick={() => handleCommentReply}
             >
               Add Comment
             </button>

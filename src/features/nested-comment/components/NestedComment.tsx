@@ -2,7 +2,7 @@ import { useState } from 'react'
 import commentData from '../data/commentData.json'
 import './NestedComment.css'
 import useNestedComment from '../hooks/useCommentTree'
-import Comment from './Comment'
+import SingleComment from './SingleComment'
 
 // interface nestedCommentProps {}
 
@@ -36,7 +36,13 @@ const NestedComment = () => {
       </div>
       <div className="reply-comment-section-container">
         {updatedCommentData.map(comment => {
-          return <Comment comment={comment} handleReply={postComment} />
+          return (
+            <SingleComment
+              comment={comment}
+              handleReply={postComment}
+              key={comment.id}
+            />
+          )
         })}
       </div>
     </div>

@@ -1,45 +1,48 @@
 import { useState } from 'react'
 
-const useNestedComment = (commentData: Array<object>) => {
-  const [updatedCommentData, setUpdatedCommentData] =
-    useState<Array<object>>(commentData)
+export interface Comment {
+  id: number
+  content: string
+  timestamp: string
+  replies: Comment[]
+}
+
+const useNestedComment = (commentData: Comment[]) => {
+  const [updatedCommentData, setUpdatedCommentData] = useState(commentData)
 
   const editCommentTree = (
-    tree: Array<object>,
+    tree: Comment[],
     id: number,
-    content: string
-  ) => {
+    newContent: Comment
+  ): Comment[] => {
     return tree.map(comment => {
-      console.log('oye', comment.id)
       if (comment.id === id) {
         return {
           ...comment,
-          replies: [
-            ...comment.replies,
-            { id, content, timestamp: new Date().toISOString(), replies: [] }
-          ]
+          replies: [...comment.replies, newContent]
         }
       } else if (comment.replies && comment.replies.length > 0) {
         return {
           ...comment,
-          replies: editCommentTree(id, content, prev.replies)
+          replies: editCommentTree(comment.replies, id, newContent)
         }
       }
       return comment
     })
   }
 
-  const postComment = (commentId: number, content: string) => {
-    console.log('post comment function')
+  const postComment = (commentId: number | null, content: string) => {
     const newContent = {
-      id: new Date().getTime(),
+      id: Date.now(),
       content,
       timestamp: new Date().toISOString(),
       replies: []
     }
 
     if (commentId) {
-      setUpdatedCommentData(prev => editCommentTree(prev, commentId, content))
+      setUpdatedCommentData(prev =>
+        editCommentTree(prev, commentId, newContent)
+      )
     } else {
       setUpdatedCommentData(prev => [newContent, ...prev])
     }
