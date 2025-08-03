@@ -13,6 +13,31 @@ const useNestedComment = (commentData: Comment[]) => {
   const editCommentTree = (
     tree: Comment[],
     id: number,
+    content: string
+  ): Comment[] => {
+    return tree.map(comment => {
+      if (comment.id === id) {
+        return { ...comment, content, timestamp: new Date().toISOString() }
+      } else if (comment.replies && comment.replies.length > 0) {
+        return {
+          ...comment,
+          replies: editCommentTree(comment.replies, id, content)
+        }
+      }
+      return comment
+    })
+  }
+
+  const editComment = (id: number, content: string) => {
+    console.log(id, content)
+
+    setUpdatedCommentData(prev => editCommentTree(prev, id, content))
+    console.log('edit Comment')
+  }
+
+  const postCommentTree = (
+    tree: Comment[],
+    id: number,
     newContent: Comment
   ): Comment[] => {
     return tree.map(comment => {
@@ -24,7 +49,7 @@ const useNestedComment = (commentData: Comment[]) => {
       } else if (comment.replies && comment.replies.length > 0) {
         return {
           ...comment,
-          replies: editCommentTree(comment.replies, id, newContent)
+          replies: postCommentTree(comment.replies, id, newContent)
         }
       }
       return comment
@@ -38,16 +63,15 @@ const useNestedComment = (commentData: Comment[]) => {
       timestamp: new Date().toISOString(),
       replies: []
     }
-
     if (commentId) {
       setUpdatedCommentData(prev =>
-        editCommentTree(prev, commentId, newContent)
+        postCommentTree(prev, commentId, newContent)
       )
     } else {
       setUpdatedCommentData(prev => [newContent, ...prev])
     }
   }
-  return { postComment, updatedCommentData }
+  return { postComment, editComment, updatedCommentData }
 }
 
 export default useNestedComment

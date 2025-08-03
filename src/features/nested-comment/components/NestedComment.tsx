@@ -8,7 +8,8 @@ import SingleComment from './SingleComment'
 
 const NestedComment = () => {
   const [content, setContent] = useState('')
-  const { postComment, updatedCommentData } = useNestedComment(commentData)
+  const { postComment, editComment, updatedCommentData } =
+    useNestedComment(commentData)
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value)
@@ -40,6 +41,7 @@ const NestedComment = () => {
             <SingleComment
               comment={comment}
               handleReply={postComment}
+              handleEdit={editComment}
               key={comment.id}
             />
           )
