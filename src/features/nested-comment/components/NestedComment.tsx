@@ -8,7 +8,7 @@ import SingleComment from './SingleComment'
 
 const NestedComment = () => {
   const [content, setContent] = useState('')
-  const { postComment, editComment, updatedCommentData } =
+  const { postComment, editComment, deleteComment, updatedCommentData } =
     useNestedComment(commentData)
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -26,7 +26,7 @@ const NestedComment = () => {
         <textarea
           cols={70}
           rows={2}
-          placeholder="Add a new comment..."
+          placeholder="Your Comment Matters..."
           value={content}
           onChange={handleChange}
           className="comment-textarea"
@@ -42,6 +42,7 @@ const NestedComment = () => {
               comment={comment}
               handleReply={postComment}
               handleEdit={editComment}
+              handleDelete={deleteComment}
               key={comment.id}
             />
           )

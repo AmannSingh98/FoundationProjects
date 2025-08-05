@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import ThemeToggle from './ThemeToggle'
 
-vi.mock('hooks/useDarkMode', () => ({
-  default: () => ({
-    isDarkMode: false,
-    handleTheme: vi.fn()
-  })
-}))
+// vi.mock('hooks/useDarkMode', () => ({
+//   default: () => ({
+//     isDarkMode: false,
+//     handleTheme: vi.fn()
+//   })
+// }))
 
 describe('ThemeToggle', () => {
   it('render for the first time', () => {

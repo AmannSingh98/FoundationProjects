@@ -6,12 +6,14 @@ interface singleCommentProps {
   comment: CommentType
   handleReply: (id: number | null, content: string) => void
   handleEdit: (id: number, content: string) => void
+  handleDelete: (id: number) => void
 }
 
 const SingleComment = ({
   comment,
   handleReply,
-  handleEdit
+  handleEdit,
+  handleDelete
 }: singleCommentProps) => {
   const { id, content, timestamp } = comment
   const [isExpand, setIsExpand] = useState(false)
@@ -36,7 +38,7 @@ const SingleComment = ({
     setEditContent(e.target.value)
   }
 
-  const handleCommentEdit = () => {
+  const handleEditScreen = () => {
     setIsEdit(true)
   }
 
@@ -47,6 +49,10 @@ const SingleComment = ({
 
   const handleCancel = () => {
     setIsEdit(false)
+  }
+
+  const handleCommentDelete = () => {
+    handleDelete(id)
   }
 
   return (
@@ -76,8 +82,8 @@ const SingleComment = ({
             <button onClick={handleExpand}>
               {isExpand ? 'Hide' : 'Reply'}
             </button>
-            <button onClick={handleCommentEdit}>Edit</button>
-            <button>Delete</button>
+            <button onClick={handleEditScreen}>Edit</button>
+            <button onClick={handleCommentDelete}>Delete</button>
           </div>
         </>
       )}
@@ -87,7 +93,7 @@ const SingleComment = ({
             <textarea
               cols={70}
               rows={2}
-              placeholder="Add a new comment..."
+              placeholder="Add your reply..."
               value={replyContent}
               onChange={handleChange}
               className="comment-textarea"
@@ -106,6 +112,7 @@ const SingleComment = ({
                 comment={comment}
                 handleReply={handleReply}
                 handleEdit={handleEdit}
+                handleDelete={handleDelete}
               />
             )
           })}

@@ -1,8 +1,7 @@
 .comment-section-container {
   display: flex;
   flex-direction: column;
-  bottom: 0;
-  margin-bottom: 40px;
+  margin: 40px 0;
 }
 
 .comment-textarea {

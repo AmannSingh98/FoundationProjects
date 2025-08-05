@@ -21,7 +21,7 @@ const Resume = () => {
     <>
       <section className="secondary-container" aria-hidden={isModalOpen}>
         <figure className="profile-icon">
-          <img src={ProfileMain} alt="" />
+          <img src={ProfileMain} alt="" data-testid="profile-image" />
         </figure>
         <div className="profile-info">
           <h1 id="profile-title">Hi, I am Aman Singh</h1>
