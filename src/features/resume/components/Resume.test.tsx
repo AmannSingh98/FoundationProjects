@@ -7,27 +7,26 @@ describe('Resume Component', () => {
     render(<Resume />)
   })
 
-  it('render profile image with correct src', () => {
+  it('render resume page elements', () => {
+    // test case for image
     const img = screen.getByTestId('profile-image')
     expect(img).toBeInTheDocument()
     expect(img).toHaveAttribute('src', expect.stringContaining('ProfileMain'))
     expect(img).toHaveAttribute('alt', '')
-  })
 
-  it('render heading and job title', () => {
-    const heading = screen.getByRole('heading', {
-      name: /Hi, I am Aman singh/i
-    })
-    expect(heading).toBeInTheDocument()
+    // test case for heading
+    expect(
+      screen.getByRole('heading', {
+        name: /Hi, I am Aman singh/i
+      })
+    ).toBeInTheDocument()
     expect(screen.getByText(/frontend developer/i)).toBeInTheDocument()
+
+    // test case for button
+    expect(screen.getByRole('button', { name: /test me/i })).toBeInTheDocument()
   })
 
-  it('renders test me button', () => {
-    const button = screen.getByRole('button', { name: /test me/i })
-    expect(button).toBeInTheDocument()
-  })
-
-  it('does not render quiz modal initially', () => {
+  it('does not render modal initially', () => {
     expect(screen.queryByText(/welcome to the quiz/i)).not.toBeInTheDocument()
   })
 
