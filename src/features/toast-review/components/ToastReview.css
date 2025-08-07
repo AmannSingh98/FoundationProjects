@@ -1,0 +1,46 @@
+.toast-main {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.toast-container {
+  border: none;
+}
+
+.toast-heading {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.toast-button {
+  width: 100px;
+}
+
+.notification-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.single-notification {
+  border: 1px solid var(--text-color);
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #a7c957;
+  margin-bottom: 10px;
+}
+
+.notification-message {
+  font-size: 16px;
+  font-weight: var(--font-weight-medium);
+}
+
+.close-button {
+  margin-left: 20px;
+  padding: 5px;
+  border: none;
+  background-color: inherit;
+}
