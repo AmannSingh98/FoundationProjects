@@ -48,8 +48,11 @@ button {
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   margin-right: 10px;
+  white-space: nowrap;
+  outline: var(--text-color);
 }
 
 button:focus {
-  outline: 2px solid var(--outline-color);
+  outline: 3px solid #d4a373;
+  outline-offset: 1px;
 }

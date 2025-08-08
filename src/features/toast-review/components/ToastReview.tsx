@@ -12,7 +12,8 @@ const ToastReview = () => {
 
   const handleClick = (message: string) => {
     const id = new Date().getTime()
-    message = message === 'yes' ? 'Thanks for the feedback' : 'Please, get lost'
+    message =
+      message === 'yes' ? 'Thanks for the feedback' : 'Sorry, will work on it'
     setNotification(msg => {
       return [...msg, { id, message }]
     })
@@ -41,31 +42,29 @@ const ToastReview = () => {
     <article className="toast-main">
       <form>
         <fieldset className="toast-container">
-          <legend className="toast-heading">Do you like the website ?</legend>
+          <legend className="toast-heading">Do you like the website :)</legend>
           <button
             type="button"
             className="toast-button"
             onClick={() => handleClick('yes')}
           >
-            Yash
+            Yes!
           </button>
           <button
             type="button"
             className="toast-button"
             onClick={() => handleClick('no')}
           >
-            Nora
+            No!
           </button>
           <div className="notification-container">
             {notification.map(message => {
               console.log(message)
               return (
-                <div className="single-notification">
-                  <Notification
-                    notification={message}
-                    handleClose={closeNotification}
-                  />
-                </div>
+                <Notification
+                  notification={message}
+                  handleClose={closeNotification}
+                />
               )
             })}
           </div>

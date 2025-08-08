@@ -6,6 +6,8 @@
 
 .toast-container {
   border: none;
+  display: flex;
+  justify-content: center;
 }
 
 .toast-heading {
@@ -15,10 +17,6 @@
   font-size: 20px;
 }
 
-.toast-button {
-  width: 100px;
-}
-
 .notification-container {
   position: fixed;
   top: 20px;
@@ -26,11 +24,15 @@
 }
 
 .single-notification {
+  width: 270px;
   border: 1px solid var(--text-color);
-  padding: 20px;
   border-radius: 10px;
+  padding: 20px;
   background-color: #a7c957;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .notification-message {
@@ -39,8 +41,10 @@
 }
 
 .close-button {
-  margin-left: 20px;
-  padding: 5px;
-  border: none;
   background-color: inherit;
+  padding: 0;
+}
+
+.toast-button {
+  width: 100px;
 }

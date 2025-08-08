@@ -31,8 +31,9 @@
   padding: 10px;
 }
 
-.toggle-input:focus + .toggle-button {
-  border: 0.1px solid rgb(201, 164, 164);
+.toggle-label:has(.toggle-input:focus) {
+  outline: 5px solid #d4a373;
+  outline-offset: 1px; /* pushes the outline out slightly */
 }
 
 .toggle-input:checked + .toggle-button {

@@ -8,7 +8,7 @@ interface notificationProps {
 const Notification = ({ notification, handleClose }: notificationProps) => {
   const { id, message } = notification
   return (
-    <>
+    <div className="single-notification">
       <span className="notification-message">{message}</span>
       <button
         className="close-button"
@@ -17,7 +17,7 @@ const Notification = ({ notification, handleClose }: notificationProps) => {
       >
         X
       </button>
-    </>
+    </div>
   )
 }
 
