@@ -1,4 +1,4 @@
-import type { notificationItem } from './ToastReview'
+import type { notificationItem } from '../hooks/useToast'
 
 interface notificationProps {
   notification: notificationItem
