@@ -27,13 +27,7 @@ describe('toast component', () => {
 
   it('render toast component after the click', async () => {
     const handleYesMock = vi.fn()
-    // can call the test value after the click....
-    // useToastMode.mockReturnValue({
-    //   notification: [{ id: 1, message: 'Thanks for the feedback' }],
-    //   handleNo: vi.fn(),
-    //   handleYes: handleYesMock,
-    //   handleClose: vi.fn()
-    // })
+    const user = userEvent.setup()
 
     useToastMode.mockReturnValueOnce({
       notification: [],
@@ -42,14 +36,18 @@ describe('toast component', () => {
       handleClose: vi.fn()
     })
 
-    render(<ToastReview />)
-    const user = userEvent.setup()
+    useToastMode.mockReturnValueOnce({
+      notification: [{ id: 1, message: 'Thanks for the feedback' }],
+      handleNo: vi.fn(),
+      handleYes: handleYesMock,
+      handleClose: vi.fn()
+    })
+
+    const { rerender } = render(<ToastReview />)
     const yesButton = screen.getByRole('button', { name: /yes!/i })
     await user.click(yesButton)
-    // expect(screen.getByText(/Thanks for the feedback/i)).toBeInTheDocument()
-    expect(
-      screen.queryByText(/sorry, will work on it/i)
-    ).not.toBeInTheDocument()
+    rerender(<ToastReview />)
     expect(handleYesMock).toHaveBeenCalled()
+    expect(screen.getByText(/Thanks for the feedback/i)).toBeInTheDocument()
   })
 })
