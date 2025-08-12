@@ -4,6 +4,7 @@ import './Resume.css'
 import QuizStart from 'features/quiz-app/components/QuizStart'
 
 const Resume = () => {
+  console.log('Resume component rendering--')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const testRef = useRef<HTMLButtonElement | null>(null)
 

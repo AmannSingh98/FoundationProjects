@@ -26,6 +26,7 @@ img {
 
 .quiz-button {
   margin-top: 20px;
+  background-color: var(--text-bg);
 }
 
 @media (width <= 1080px) {

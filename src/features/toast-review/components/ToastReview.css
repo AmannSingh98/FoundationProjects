@@ -28,7 +28,7 @@
   border: 1px solid var(--text-color);
   border-radius: 10px;
   padding: 20px;
-  background-color: #a7c957;
+  background: linear-gradient(45deg, #bc6c25, #dda15e);
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
@@ -47,4 +47,5 @@
 
 .toast-button {
   width: 100px;
+  /* text-shadow: var(--text-color-shadow); */
 }
