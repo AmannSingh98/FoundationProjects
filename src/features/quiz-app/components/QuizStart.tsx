@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './QuizStart.css'
 import QuizMain from './QuizMain'
 
@@ -44,7 +44,7 @@ const QuizStart = ({ closeModal }: quizStartProp) => {
 
   return (
     <>
-      <div className="modal-overlay" aria-hidden="true"></div>
+      <div className="modal-overlay"></div>
       {isQuizModal ? (
         <QuizMain closeModal={closeModal} time={time} />
       ) : (

@@ -40,6 +40,10 @@ body {
   --outline-color: orange;
 }
 
+#root {
+  position: relative;
+}
+
 .main {
   display: flex;
   flex-direction: column;

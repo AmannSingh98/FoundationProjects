@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 
 export interface notificationItem {
   id: number
@@ -26,14 +26,13 @@ const useToast = () => {
     }, 3000)
   }
 
-  const handleClose = (id: number) => {
-    console.log('close')
+  const handleClose = useCallback((id: number) => {
     if (timerRef.current[id]) {
       setNotification(prev => {
         return prev.filter(message => message.id !== id)
       })
     }
-  }
+  }, [])
 
   useEffect(() => {
     return () => {

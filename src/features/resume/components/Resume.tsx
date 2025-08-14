@@ -1,14 +1,17 @@
-import { useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import ProfileMain from 'assets/images/ProfileMain.svg'
 import './Resume.css'
-import QuizStart from 'features/quiz-app/components/QuizStart'
+import '../../quiz-app/components/QuizStart.css'
+
+// import lazy load for the quiz start component
+const QuizStart = lazy(() => import('features/quiz-app/components/QuizStart'))
 
 const Resume = () => {
   console.log('Resume component rendering--')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const testRef = useRef<HTMLButtonElement | null>(null)
 
-  const handleModal: () => void = () => {
+  const handleModal = (): void => {
     setIsModalOpen(false)
   }
 
@@ -31,12 +34,25 @@ const Resume = () => {
             className="quiz-button"
             onClick={() => setIsModalOpen(true)}
             ref={testRef}
+            aria-haspopup="dialog"
           >
             Test Me
           </button>
         </div>
       </section>
-      {isModalOpen && <QuizStart closeModal={handleModal} />}
+      {isModalOpen && (
+        <Suspense
+          fallback={
+            <div className="modal-overlay">
+              <div className="quiz-modal">
+                <h2>Loading...</h2>
+              </div>
+            </div>
+          }
+        >
+          <QuizStart closeModal={handleModal} />
+        </Suspense>
+      )}
     </>
   )
 }

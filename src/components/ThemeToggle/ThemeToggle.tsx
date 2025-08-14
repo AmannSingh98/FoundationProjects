@@ -5,7 +5,6 @@ import './ThemeToggle.css'
 
 const ThemeToggle = () => {
   const { handleTheme: handleChange, isDarkMode: isChecked } = useDarkMode()
-  console.log('rendering theme toggle-', isChecked)
   return (
     <section>
       <fieldset>

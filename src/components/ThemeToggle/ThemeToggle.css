@@ -60,5 +60,8 @@
 
 .horizontal-line {
   opacity: 0.1;
-  margin: 30px -3000px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 20px;
 }
