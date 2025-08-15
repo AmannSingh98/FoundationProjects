@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
-import ProfileMain from 'assets/images/ProfileMain.svg'
+import ProfileMain from 'assets/images/ProfileMain.webp'
 import './Resume.css'
 import '../../quiz-app/components/QuizStart.css'
 
@@ -7,7 +7,6 @@ import '../../quiz-app/components/QuizStart.css'
 const QuizStart = lazy(() => import('features/quiz-app/components/QuizStart'))
 
 const Resume = () => {
-  console.log('Resume component rendering--')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const testRef = useRef<HTMLButtonElement | null>(null)
 

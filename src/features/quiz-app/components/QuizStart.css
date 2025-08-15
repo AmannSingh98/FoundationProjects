@@ -70,9 +70,6 @@ input:focus {
   margin-top: 10px;
 }
 
-.hide {
-  display: none;
-}
 .quiz-main-container {
   display: flex;
   flex-direction: column;
@@ -97,10 +94,12 @@ input:focus {
 
 .correct {
   background-color: green;
+  color: white;
 }
 
 .wrong {
   background-color: red;
+  color: white;
 }
 
 /* Shows outline only for keyboard focus, not mouse click or hover. */
@@ -112,6 +111,16 @@ input:focus {
 }
 .answer-button:hover {
   background-color: #adb5bd;
+}
+
+.answer-button.correct:hover {
+  background-color: green;
+  color: white;
+}
+
+.answer-button.wrong:hover {
+  background-color: lightcoral;
+  color: white;
 }
 
 .quiz-header {

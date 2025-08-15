@@ -10,8 +10,9 @@ const QuizStart = ({ closeModal }: quizStartProp) => {
   const [isQuizModal, setIsQuizModal] = useState(false)
   const inputRef = useRef<HTMLInputElement | null>(null)
 
+  // handleChange and handleStart are recreated every time.
+  // Can be an issue if pass in future as props
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e)
     const regex = /^\d*$/
     if (regex.test(e.target.value)) {
       setTime(e.target.value)

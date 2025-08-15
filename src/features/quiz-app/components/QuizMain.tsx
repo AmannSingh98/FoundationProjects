@@ -1,6 +1,6 @@
 import './QuizStart.css'
 import useModal from '../hooks/useModal'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 interface quizMainProps {
   closeModal: () => void
@@ -8,6 +8,7 @@ interface quizMainProps {
 }
 
 const QuizMain = ({ closeModal, time }: quizMainProps) => {
+  console.log('quiz game rendering ---')
   const numericTime = Number(time)
   const [timer, setTimer] = useState<number>(numericTime)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -22,6 +23,31 @@ const QuizMain = ({ closeModal, time }: quizMainProps) => {
     selectedAnswer,
     showResult
   } = useModal()
+
+  const answerbuttons = useMemo(() => {
+    return quizData[counter].answers.map(answer => {
+      console.log('quiz options rendering --- ')
+      const isCorrect = answer === selectedAnswer
+      let style = ''
+
+      if (isCorrect) {
+        if (selectedAnswer === quizData[counter].answer) {
+          style = 'correct'
+        } else {
+          style = 'wrong'
+        }
+      }
+      return (
+        <button
+          className={`answer-button ${style}`}
+          onClick={() => handleSolution(answer)}
+          disabled={nextButtonShow}
+        >
+          {answer}
+        </button>
+      )
+    })
+  }, [quizData, counter, nextButtonShow])
 
   const handleNext = () => {
     if (selectedAnswer === quizData[counter].answer) {
@@ -48,7 +74,7 @@ const QuizMain = ({ closeModal, time }: quizMainProps) => {
   }
 
   useEffect(() => {
-    timerRef.current = handleInterval()
+    // timerRef.current = handleInterval()
 
     return () => {
       if (timerRef.current) {
@@ -79,7 +105,9 @@ const QuizMain = ({ closeModal, time }: quizMainProps) => {
     <section className="quiz-modal question">
       <header className="quiz-header">
         <h2>JS Trivia</h2>
-        <span className="timer">Timer: {timer}</span>
+        <span className="timer" aria-live="polite">
+          Timer: {timer}
+        </span>
       </header>
       <article className="quiz-main-container">
         <p>{quizData[counter].question}</p>
@@ -87,33 +115,12 @@ const QuizMain = ({ closeModal, time }: quizMainProps) => {
           className="quiz-solution-container"
           style={{ border: 'none' }}
         >
-          {quizData[counter].answers.map(answer => {
-            const isCorrect = answer === selectedAnswer
-            let style = ''
-            if (isCorrect) {
-              if (selectedAnswer === quizData[counter].answer) {
-                style = 'correct'
-              } else {
-                style = 'wrong'
-              }
-            }
-            return (
-              <button
-                className={`answer-button ${style}`}
-                onClick={() => handleSolution(answer)}
-                disabled={nextButtonShow}
-              >
-                {answer}
-              </button>
-            )
-          })}
+          <legend className="sr-only">Select any one of the answer</legend>
+          {answerbuttons}
         </fieldset>
       </article>
       <nav className="quiz-button-container">
-        <button
-          onClick={handleNext}
-          className={`next-button ${nextButtonShow ? 'show' : 'hide'}`}
-        >
+        <button onClick={handleNext} disabled={!nextButtonShow}>
           {'<'}
           {counter === quizData.length - 1 ? 'Submit' : 'Next'}
           {'>'}
