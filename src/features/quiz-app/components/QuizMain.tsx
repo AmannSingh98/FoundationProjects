@@ -8,7 +8,6 @@ interface quizMainProps {
 }
 
 const QuizMain = ({ closeModal, time }: quizMainProps) => {
-  console.log('quiz game rendering ---')
   const numericTime = Number(time)
   const [timer, setTimer] = useState<number>(numericTime)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -74,7 +73,7 @@ const QuizMain = ({ closeModal, time }: quizMainProps) => {
   }
 
   useEffect(() => {
-    // timerRef.current = handleInterval()
+    timerRef.current = handleInterval()
 
     return () => {
       if (timerRef.current) {
