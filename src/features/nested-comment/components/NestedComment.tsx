@@ -4,8 +4,6 @@ import './NestedComment.css'
 import useNestedComment from '../hooks/useCommentTree'
 import SingleComment from './SingleComment'
 
-// interface nestedCommentProps {}
-
 const NestedComment = () => {
   const [content, setContent] = useState('')
   const { postComment, editComment, deleteComment, updatedCommentData } =

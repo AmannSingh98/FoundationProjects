@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 export interface Comment {
   id: number
@@ -31,22 +31,24 @@ const useNestedComment = (commentData: Comment[]) => {
     })
   }
 
-  const postComment = (commentId: number | null, content: string) => {
-    const newContent = {
-      id: Date.now(),
-      content,
-      timestamp: new Date().toISOString(),
-      replies: []
-    }
-    if (commentId) {
-      setUpdatedCommentData(prev =>
-        postCommentTree(prev, commentId, newContent)
-      )
-    } else {
-      setUpdatedCommentData(prev => [newContent, ...prev])
-    }
-  }
-
+  const postComment = useCallback(
+    (commentId: number | null, content: string) => {
+      const newContent = {
+        id: Date.now(),
+        content,
+        timestamp: new Date().toISOString(),
+        replies: []
+      }
+      if (commentId) {
+        setUpdatedCommentData(prev =>
+          postCommentTree(prev, commentId, newContent)
+        )
+      } else {
+        setUpdatedCommentData(prev => [newContent, ...prev])
+      }
+    },
+    []
+  )
   const editCommentTree = (
     tree: Comment[],
     id: number,
@@ -65,15 +67,11 @@ const useNestedComment = (commentData: Comment[]) => {
     })
   }
 
-  const editComment = (id: number, content: string) => {
-    console.log(id, content)
-
+  const editComment = useCallback((id: number, content: string) => {
     setUpdatedCommentData(prev => editCommentTree(prev, id, content))
-    console.log('edit Comment')
-  }
+  }, [])
 
   const deleteCommentTree = (tree: Comment[], id: number): Comment[] => {
-    console.log('tree')
     return tree
       .filter(comment => comment.id !== id)
       .map(comment => ({
@@ -82,10 +80,9 @@ const useNestedComment = (commentData: Comment[]) => {
       }))
   }
 
-  const deleteComment = (id: number) => {
+  const deleteComment = useCallback((id: number) => {
     setUpdatedCommentData(prev => deleteCommentTree(prev, id))
-    console.log('delete Comment')
-  }
+  }, [])
 
   return { postComment, editComment, deleteComment, updatedCommentData }
 }
