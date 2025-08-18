@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import './SingleComment.css'
 import type { Comment as CommentType } from '../hooks/useCommentTree'
 
@@ -11,12 +11,25 @@ interface singleCommentProps {
 
 const SingleComment = React.memo(
   ({ comment, handleReply, handleEdit, handleDelete }: singleCommentProps) => {
-    console.log('single comment rendering', comment)
     const { id, content, timestamp } = comment
     const [isExpand, setIsExpand] = useState(false)
     const [replyContent, setReplyContent] = useState('')
     const [isEdit, setIsEdit] = useState(false)
     const [editContent, setEditContent] = useState(content)
+
+    const memoisedSingleComment = useMemo(() => {
+      return comment.replies.map((comment, idx) => {
+        return (
+          <SingleComment
+            comment={comment}
+            handleReply={handleReply}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+            key={idx}
+          />
+        )
+      })
+    }, [comment])
 
     const handleExpand = () => {
       setIsExpand(!isExpand)
@@ -107,7 +120,9 @@ const SingleComment = React.memo(
                 Add Comment
               </button>
             </div>
-            {comment.replies.map((comment, idx) => {
+            {memoisedSingleComment}
+            {/* {comment.replies.map((comment, idx) => {
+              console.log('map rendering', comment)
               return (
                 <SingleComment
                   comment={comment}
@@ -117,7 +132,7 @@ const SingleComment = React.memo(
                   key={idx}
                 />
               )
-            })}
+            })} */}
           </div>
         )}
       </section>

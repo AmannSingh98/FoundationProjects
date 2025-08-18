@@ -8,10 +8,28 @@
     />
     <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/ProfileMain.svg"
+      sizes="32x32"
+    />
+    <link
+      rel="preload"
+      href="/assets/images/ProfileMain.webp"
+      as="image"
+      fetchpriority="high"
+      type="image/webp"
+    />
     <title>Foundation Week 1</title>
   </head>
   <body>
+    <div
+      id="instant-loader"
+      style="text-align: center; font-size: 1.2em; margin-top: 48px"
+    >
+      Loading :) :) :)
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
